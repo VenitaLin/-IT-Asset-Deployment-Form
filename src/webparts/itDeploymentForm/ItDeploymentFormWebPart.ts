@@ -8,6 +8,7 @@ import {
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import ItDeploymentForm from './components/ItDeploymentForm';
 import { IItDeploymentFormProps } from './components/IItDeploymentFormProps';
+import { WebPartContext } from '@microsoft/sp-webpart-base';
 
 export interface IItDeploymentFormWebPartProps {
   description: string;
@@ -22,7 +23,8 @@ export default class ItDeploymentFormWebPart extends BaseClientSideWebPart<IItDe
         description: this.properties.description,
         spHttpClient: this.context.spHttpClient,
         siteUrl: this.context.pageContext.web.absoluteUrl,
-        listName: "it-deployment-form" //set the SharePoint List Name
+        listName: "it-deployment-form", //set the SharePoint List Name
+        context: this.context
       }
     );
 

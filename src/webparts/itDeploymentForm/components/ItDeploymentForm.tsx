@@ -3,6 +3,7 @@ import styles from './ItDeploymentForm.module.scss';
 import { IItDeploymentFormProps } from './IItDeploymentFormProps';
 import { IItDeploymentFormState, initialSate } from './IItDeploymentFormState';
 import * as App from './ItDeploymentFormApp';
+import { PeoplePicker, PrincipalType } from "@pnp/spfx-controls-react/lib/PeoplePicker";
 import * as formData from './ItDeploymentFormData';
 import * as Utils from '../../utils';
 import SignaturePad from 'react-signature-canvas'
@@ -19,6 +20,8 @@ export default class ItDeploymentForm extends React.Component<IItDeploymentFormP
   issIssSigPad: any; 
   returnReSigPad: any; 
   returnAckSigPad: any;
+  protected pplStaffName;
+
   public render(): React.ReactElement<IItDeploymentFormProps> {
 
     return (
@@ -36,7 +39,18 @@ export default class ItDeploymentForm extends React.Component<IItDeploymentFormP
                     </tr>
                     <tr>
                       <td>Staff Name</td>
-                      <td><input type="text" name="staffName" placeholder="Staff Name" onChange={this.handleChange} required></input></td>
+                      <td>
+                      <PeoplePicker
+                        context={this.props.context}
+                        required={true}
+                        onChange={this._getPeoplePickerItems}
+                        showHiddenInUI={false}
+                        principalTypes={[PrincipalType.User]}
+                        resolveDelay={1000}
+                        placeholder="Staff Name"
+                        ref={c => (this.pplStaffName = c)}
+                      />
+                      </td>
                       <td>Division</td>
                       <td>
                         <select name="division" value={this.state.division} onChange={this.handleChange} required>
@@ -89,12 +103,6 @@ export default class ItDeploymentForm extends React.Component<IItDeploymentFormP
                     <tr>
                       <th colSpan={4}>Accessories</th>
                     </tr>
-                    {/* <tr>
-                      <td><label><input type="checkbox" name="accessories" value="Power Adapter" onClick={this.handleCheckboxChange}></input>Power Adapter</label></td>
-                      <td><label><input type="checkbox" name="accessories" value="HDMI to GVA Adaptor" onClick={this.handleCheckboxChange}></input>HDMI to GVA Adaptor</label></td>   
-                      <td><label><input type="checkbox" name="accessories" value="Keyboard" onClick={this.handleCheckboxChange}></input>Keyboard</label></td>
-                      <td><label><input type="checkbox" name="accessories" value="Cable Lock" onClick={this.handleCheckboxChange}></input>Cable Lock</label></td>
-                    </tr> */}
                     <tr>
                       <td colSpan={4}>
                         <div className={styles.checkBoxLabelGroup}>
@@ -166,7 +174,6 @@ export default class ItDeploymentForm extends React.Component<IItDeploymentFormP
                         <SignaturePad
                           name="issReSigPad" penColor='black'
                           canvasProps={{
-                            // className: styles.sigPad,
                             width: 170, 
                             height: 100
                           }}
@@ -181,7 +188,6 @@ export default class ItDeploymentForm extends React.Component<IItDeploymentFormP
                         <SignaturePad
                           name="issIssSigPad" penColor='black'
                           canvasProps={{
-                            // className: styles.sigPad,
                             width: 170, 
                             height: 100
                           }}
@@ -221,7 +227,6 @@ export default class ItDeploymentForm extends React.Component<IItDeploymentFormP
                         <SignaturePad
                           name="returnReSigPad" penColor='black'
                           canvasProps={{
-                            // className: styles.sigPad,
                             width: 170, 
                             height: 100
                           }}
@@ -236,7 +241,6 @@ export default class ItDeploymentForm extends React.Component<IItDeploymentFormP
                         <SignaturePad
                           name="returnAckSigPad" penColor='black'
                           canvasProps={{
-                            // className: styles.sigPad,
                             width: 170, 
                             height: 100
                           }}
@@ -283,6 +287,8 @@ export default class ItDeploymentForm extends React.Component<IItDeploymentFormP
     this.issIssSigPad.clear();
     this.returnReSigPad.clear();
     this.returnAckSigPad.clear();
+    this.pplStaffName.state.selectedPersons=[];
+    this.pplStaffName.onChange([]); 
   }
 
   handleValidation = () => {
@@ -347,11 +353,7 @@ export default class ItDeploymentForm extends React.Component<IItDeploymentFormP
       Utils.postData(this.props.spHttpClient, uri, JSON.stringify(_spForm)).then(response => {
         if(response.status === 201){
           this.resetForm();
-          this.setState({
-            msg:{
-              success: 'Form submitted successfully!'
-            }
-          })
+          alert("Form submitted successfully!");
         }else{
           this.setState({
             msg:{
@@ -365,7 +367,6 @@ export default class ItDeploymentForm extends React.Component<IItDeploymentFormP
   }
 
   handleSubmit = (e) => {
-    console.log(this.props);
     e.preventDefault();
     this.setState({
       status: 'Validating form...',
@@ -405,6 +406,14 @@ export default class ItDeploymentForm extends React.Component<IItDeploymentFormP
       this.returnReSigPad.clear();
     } else {
       this.returnAckSigPad.clear();
+    }
+  }
+
+  private _getPeoplePickerItems = (items: any[]) => {
+    if (items && items.length > 0){
+      this.setState({
+        staffName: items[0].text
+      });
     }
   }
 }

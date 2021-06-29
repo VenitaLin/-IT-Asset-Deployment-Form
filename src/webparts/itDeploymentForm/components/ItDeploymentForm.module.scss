@@ -1,9 +1,21 @@
 @import '~office-ui-fabric-react/dist/sass/References.scss';
 
 .itDeploymentForm {
+  div {
+    border: none !important;
+  }
+
+  div ::after {
+    border: none !important;
+  }
+
   select {
     width: 100%;
     border: none;
+  }
+
+  label, select, input, input[type=text]:-moz-placeholder {
+    font-size: $ms-font-size-m;
   }
 
   input[type=text] {
@@ -162,4 +174,5 @@
     width: 100%;
     table-layout: fixed; 
   }
+
 }

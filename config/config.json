@@ -13,6 +13,7 @@
   },
   "externals": {},
   "localizedResources": {
-    "ItDeploymentFormWebPartStrings": "lib/webparts/itDeploymentForm/loc/{locale}.js"
+    "ItDeploymentFormWebPartStrings": "lib/webparts/itDeploymentForm/loc/{locale}.js",
+    "ControlStrings": "node_modules/@pnp/spfx-controls-react/lib/loc/{locale}.js"
   }
 }

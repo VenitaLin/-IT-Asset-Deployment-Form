@@ -9,11 +9,14 @@
     "test": "gulp test"
   },
   "dependencies": {
+    "@fluentui/example-data": "^8.2.3",
+    "@fluentui/react": "^8.21.0",
     "@microsoft/sp-core-library": "1.12.1",
     "@microsoft/sp-lodash-subset": "1.12.1",
     "@microsoft/sp-office-ui-fabric-core": "1.12.1",
     "@microsoft/sp-property-pane": "1.12.1",
     "@microsoft/sp-webpart-base": "1.12.1",
+    "@pnp/spfx-controls-react": "^3.2.1",
     "office-ui-fabric-react": "7.156.0",
     "react": "16.9.0",
     "react-dom": "16.9.0",
