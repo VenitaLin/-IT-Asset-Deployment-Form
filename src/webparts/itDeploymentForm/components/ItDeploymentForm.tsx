@@ -21,6 +21,11 @@ export default class ItDeploymentForm extends React.Component<IItDeploymentFormP
   returnReSigPad: any; 
   returnAckSigPad: any;
   protected pplStaffName;
+  protected pplIssReName;
+  protected pplIssIssName;
+  protected pplReturnReName;
+  protected pplReturnAckName;
+  protected myFormRef;
 
   public render(): React.ReactElement<IItDeploymentFormProps> {
 
@@ -31,7 +36,7 @@ export default class ItDeploymentForm extends React.Component<IItDeploymentFormP
             <img src={require('../../../img/sbfLogo.png')}></img><br></br>
             DTS IT Asset Deployment Form
           </div>
-          <form id="itForm">
+          <form id="itForm" ref={(el) => this.myFormRef = el}>
                 <table>
                   <tbody>
                     <tr>
@@ -43,7 +48,7 @@ export default class ItDeploymentForm extends React.Component<IItDeploymentFormP
                       <PeoplePicker
                         context={this.props.context}
                         required={true}
-                        onChange={this._getPeoplePickerItems}
+                        onChange={this.handleStaffNameChange}
                         showHiddenInUI={false}
                         principalTypes={[PrincipalType.User]}
                         resolveDelay={1000}
@@ -164,9 +169,31 @@ export default class ItDeploymentForm extends React.Component<IItDeploymentFormP
                     </tr>
                     <tr>
                       <td>Name</td>
-                      <td><input type="text" name="issReName" placeholder="Name" onChange={this.handleChange} ></input></td>
+                      <td>
+                        <PeoplePicker
+                          context={this.props.context}
+                          required={true}
+                          onChange={this.handleIssReNameChange}
+                          showHiddenInUI={false}
+                          principalTypes={[PrincipalType.User]}
+                          resolveDelay={1000}
+                          placeholder="Name"
+                          ref={c => (this.pplIssReName = c)}
+                        />
+                      </td>
                       <td>Name</td>
-                      <td><input type="text" name="issIssName" placeholder="Name" onChange={this.handleChange} ></input></td>
+                      <td>
+                        <PeoplePicker
+                          context={this.props.context}
+                          required={true}
+                          onChange={this.handleIssIssNameChange}
+                          showHiddenInUI={false}
+                          principalTypes={[PrincipalType.User]}
+                          resolveDelay={1000}
+                          placeholder="Name"
+                          ref={c => (this.pplIssIssName = c)}
+                        />
+                      </td>
                     </tr>
                     <tr>
                       <td>Signature</td>
@@ -201,7 +228,7 @@ export default class ItDeploymentForm extends React.Component<IItDeploymentFormP
                     <tr>
                       <td>Date</td>
                       <td><input type="date" name="issReDate" placeholder="Date" onChange={this.handleChange} ></input></td>
-                      <td>Name</td>
+                      <td>Date</td>
                       <td><input type="date" name="issIssDate" placeholder="Date" onChange={this.handleChange} ></input></td>
                     </tr>
                     <tr>
@@ -217,9 +244,31 @@ export default class ItDeploymentForm extends React.Component<IItDeploymentFormP
                     </tr>
                     <tr>
                       <td>Name</td>
-                      <td><input type="text" name="returnReName" placeholder="Name" onChange={this.handleChange} ></input></td>
+                      <td>
+                        <PeoplePicker
+                          context={this.props.context}
+                          required={true}
+                          onChange={this.handleReturnReNameChange}
+                          showHiddenInUI={false}
+                          principalTypes={[PrincipalType.User]}
+                          resolveDelay={1000}
+                          placeholder="Name"
+                          ref={c => (this.pplReturnReName = c)}
+                        />
+                      </td>
                       <td>Name</td>
-                      <td><input type="text" name="returnAckName" placeholder="Name" onChange={this.handleChange} ></input></td>
+                      <td>
+                        <PeoplePicker
+                          context={this.props.context}
+                          required={true}
+                          onChange={this.handleReturnAckNameChange}
+                          showHiddenInUI={false}
+                          principalTypes={[PrincipalType.User]}
+                          resolveDelay={1000}
+                          placeholder="Name"
+                          ref={c => (this.pplReturnAckName = c)}
+                        />
+                      </td>
                     </tr>
                     <tr>
                       <td>Signature</td>
@@ -254,7 +303,7 @@ export default class ItDeploymentForm extends React.Component<IItDeploymentFormP
                     <tr>
                       <td>Date</td>
                       <td><input type="date" name="returnReDate" placeholder="Date" onChange={this.handleChange} ></input></td>
-                      <td>Name</td>
+                      <td>Date</td>
                       <td><input type="date" name="returnAckDate" placeholder="Date" onChange={this.handleChange} ></input></td>
                     </tr>
                     <tr>
@@ -280,15 +329,24 @@ export default class ItDeploymentForm extends React.Component<IItDeploymentFormP
   }
 
   resetForm = (e) => {
+    this.myFormRef.reset();
     this.setState({
       ...initialSate
-    })
+    });
     this.issReSigPad.clear();
     this.issIssSigPad.clear();
     this.returnReSigPad.clear();
     this.returnAckSigPad.clear();
     this.pplStaffName.state.selectedPersons=[];
-    this.pplStaffName.onChange([]); 
+    this.pplStaffName.onChange([]);
+    this.pplIssReName.state.selectedPersons=[];
+    this.pplIssReName.onChange([]); 
+    this.pplIssIssName.state.selectedPersons=[];
+    this.pplIssIssName.onChange([]); 
+    this.pplReturnReName.state.selectedPersons=[];
+    this.pplReturnReName.onChange([]); 
+    this.pplReturnAckName.state.selectedPersons=[];
+    this.pplReturnAckName.onChange([]); 
   }
 
   handleValidation = () => {
@@ -314,9 +372,7 @@ export default class ItDeploymentForm extends React.Component<IItDeploymentFormP
 
     let uri = this.props.siteUrl + "/_api/web/lists/getbytitle('" + this.props.listName + "')/items";
     
-    let acc: any;
-    const stateAccs = this.state.accessories;
-    acc = stateAccs.filter((Acc: { isChecked: boolean; }) => Acc.isChecked === true).map((filterAcc: { value: any; }) => (filterAcc.value)).toString()
+    let acc = App.formatAcc(this.state.accessories)
 
     this.setState({
       formatedAcc: acc,
@@ -325,31 +381,7 @@ export default class ItDeploymentForm extends React.Component<IItDeploymentFormP
       returnReSig: this.returnReSigPad.getTrimmedCanvas().toDataURL("image/png"),
       returnAckSig: this.returnAckSigPad.getTrimmedCanvas().toDataURL("image/png")
     }, function(){
-      let _spForm = {
-        Title: `Create on ` + new Date(),
-        staffName: this.state.staffName,
-        division: this.state.division,
-        designation: this.state.designation,
-        department: this.state.department,
-        brand: this.state.brand,
-        model: this.state.model,
-        serialNum : this.state.serialNum,
-        assetTag: this.state.assetTag,
-        formatedAcc: this.state.formatedAcc,
-        otherAccessories: this.state.otherAccessories,
-        issReName: this.state.issReName,
-        issIssName: this.state.issIssName,
-        issReSig: this.state.issReSig,
-        issIssSig: this.state.issIssSig,
-        issReDate: this.state.issReDate,
-        issIssDate: this.state.issIssDate,
-        returnReName: this.state.returnReName,
-        returnAckName: this.state.returnAckName,
-        returnReSig: this.state.returnReSig,
-        returnAckSig: this.state.returnAckSig,
-        returnReDate: this.state.returnReDate,
-        returnAckDate: this.state.returnAckDate
-      };
+      let _spForm = App.setFormProps(this.state);
       Utils.postData(this.props.spHttpClient, uri, JSON.stringify(_spForm)).then(response => {
         if(response.status === 201){
           this.resetForm();
@@ -362,7 +394,6 @@ export default class ItDeploymentForm extends React.Component<IItDeploymentFormP
           })
         }
       });
-      
     })
   }
 
@@ -409,11 +440,44 @@ export default class ItDeploymentForm extends React.Component<IItDeploymentFormP
     }
   }
 
-  private _getPeoplePickerItems = (items: any[]) => {
+  private handleStaffNameChange = (items: any[]) => {
     if (items && items.length > 0){
       this.setState({
         staffName: items[0].text
       });
     }
   }
+
+  private handleIssReNameChange = (items: any[]) => {
+    if (items && items.length > 0){
+      this.setState({
+        issReName: items[0].text
+      });
+    }
+  }
+
+  private handleIssIssNameChange = (items: any[]) => {
+    if (items && items.length > 0){
+      this.setState({
+        issIssName: items[0].text
+      });
+    }
+  }
+
+  private handleReturnReNameChange = (items: any[]) => {
+    if (items && items.length > 0){
+      this.setState({
+        returnReName: items[0].text
+      });
+    }
+  }
+
+  private handleReturnAckNameChange = (items: any[]) => {
+    if (items && items.length > 0){
+      this.setState({
+        returnAckName: items[0].text
+      });
+    }
+  }
+  
 }
