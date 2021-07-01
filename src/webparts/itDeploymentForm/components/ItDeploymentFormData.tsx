@@ -1,11 +1,11 @@
 export const divisions = [
-    "CEO's OFFICE", 
-    'MAR COMMS', 
-    'CORPORATE SERVICES', 
-    'HUMAN RESOURCES' , 
-    'MTED & DTS', 
-    'JOBS & SKILLS', 
-    'SBF GLOBAL', 
+    "CEO's OFFICE",
+    'MAR COMMS',
+    'CORPORATE SERVICES',
+    'HUMAN RESOURCES',
+    'MTED & DTS',
+    'JOBS & SKILLS',
+    'SBF GLOBAL',
     'STRATEGY & DEVELOPMENT'
 ]
 

@@ -1,7 +1,7 @@
 export const validateForm = (props) => {
-    if(!props.staffName || !props.division || !props.designation || !props.department){
+    if (!props.staffName || !props.division || !props.designation || !props.department) {
         return false
-    }else{
+    } else {
         return true
     }
 }
@@ -21,7 +21,7 @@ export const setFormProps = (props) => {
         department: props.department,
         brand: props.brand,
         model: props.model,
-        serialNum : props.serialNum,
+        serialNum: props.serialNum,
         assetTag: props.assetTag,
         formatedAcc: props.formatedAcc,
         otherAccessories: props.otherAccessories,

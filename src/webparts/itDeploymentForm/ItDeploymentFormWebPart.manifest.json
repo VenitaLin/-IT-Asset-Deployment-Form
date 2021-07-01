@@ -17,9 +17,15 @@
 
   "preconfiguredEntries": [{
     "groupId": "5c03119e-3074-46fd-976b-c60198311f70", // Other
-    "group": { "default": "Other" },
-    "title": { "default": "it-deployment-form" },
-    "description": { "default": "it-deployment-form description" },
+    "group": {
+      "default": "Other"
+    },
+    "title": {
+      "default": "it-deployment-form"
+    },
+    "description": {
+      "default": "it-deployment-form description"
+    },
     "officeFabricIconFontName": "Page",
     "properties": {
       "description": "it-deployment-form"

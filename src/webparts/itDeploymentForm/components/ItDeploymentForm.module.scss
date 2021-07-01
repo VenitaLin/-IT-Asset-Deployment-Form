@@ -14,12 +14,16 @@
     border: none;
   }
 
-  label, select, input, input[type=text]:-moz-placeholder {
+  label,
+  select,
+  input,
+  input[type=text]:-moz-placeholder {
     font-size: $ms-font-size-m;
   }
 
-  input[type=text],  input[type=date] {
-    width:  100%;
+  input[type=text],
+  input[type=date] {
+    width: 100%;
     border: none;
   }
 
@@ -27,8 +31,8 @@
     margin: 15px;
   }
 
-  ol > li:before {
-      margin-right: 10px;
+  ol>li:before {
+    margin-right: 10px;
   }
 
   p {
@@ -37,14 +41,14 @@
 
   table {
     width: 100%;
-    border:1px solid #dcdcdc;
+    border: 1px solid #dcdcdc;
     border-collapse: collapse;
   }
 
   td {
     width: 10%;
     padding: 1%;
-    border:1px solid #dcdcdc;
+    border: 1px solid #dcdcdc;
   }
 
   th {
@@ -67,7 +71,7 @@
   }
 
   .errorMsg {
-    color:indianred;    
+    color: indianred;
     font-weight: 600;
   }
 
@@ -76,7 +80,7 @@
   }
 
   .successMsg {
-    color:darkseagreen;
+    color: darkseagreen;
     font-weight: 600;
   }
 
@@ -107,7 +111,7 @@
     padding: 1em;
   }
 
-  .title img{
+  .title img {
     width: 30%
   }
 
@@ -138,7 +142,7 @@
     // Basic Button
     outline: transparent;
     position: relative;
-    font-family: "Segoe UI WestEuropean","Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
+    font-family: "Segoe UI WestEuropean", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     font-size: $ms-font-size-m;
     font-weight: $ms-font-weight-regular;
@@ -163,7 +167,7 @@
   .buttonGroup {
     text-align: center;
   }
-  
+
   .checkBoxLabel {
     display: table-cell;
     text-align: left;
@@ -172,7 +176,7 @@
   .checkBoxLabelGroup {
     display: table;
     width: 100%;
-    table-layout: fixed; 
+    table-layout: fixed;
   }
 
 }
