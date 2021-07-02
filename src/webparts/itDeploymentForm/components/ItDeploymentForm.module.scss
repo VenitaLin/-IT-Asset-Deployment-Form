@@ -1,4 +1,4 @@
-@import '~office-ui-fabric-react/dist/sass/References.scss';
+@import "~office-ui-fabric-react/dist/sass/References.scss";
 
 .itDeploymentForm {
   div {
@@ -17,12 +17,12 @@
   label,
   select,
   input,
-  input[type=text]:-moz-placeholder {
+  input[type="text"]:-moz-placeholder {
     font-size: $ms-font-size-m;
   }
 
-  input[type=text],
-  input[type=date] {
+  input[type="text"],
+  input[type="date"] {
     width: 100%;
     border: none;
   }
@@ -31,7 +31,7 @@
     margin: 15px;
   }
 
-  ol>li:before {
+  ol > li:before {
     margin-right: 10px;
   }
 
@@ -112,7 +112,7 @@
   }
 
   .title img {
-    width: 30%
+    width: 30%;
   }
 
   .subTitle {
@@ -142,7 +142,8 @@
     // Basic Button
     outline: transparent;
     position: relative;
-    font-family: "Segoe UI WestEuropean", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    font-family: "Segoe UI WestEuropean", "Segoe UI", -apple-system,
+      BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     font-size: $ms-font-size-m;
     font-weight: $ms-font-weight-regular;
@@ -178,5 +179,4 @@
     width: 100%;
     table-layout: fixed;
   }
-
 }

@@ -7,25 +7,25 @@ export interface IItDeploymentFormState {
   designation: string;
   department: string;
   brand: string;
-  model: string,
-  serialNum: string,
-  assetTag: string,
-  accessories: any,
-  formatedAcc: any,
-  otherAccessories: string,
-  msg: any,
-  issReName: string,
-  issIssName: string,
-  issReSig: any,
-  issIssSig: any,
-  issReDate: any,
-  issIssDate: any,
-  returnReName: any,
-  returnAckName: any,
-  returnReSig: any,
-  returnAckSig: any,
-  returnReDate: any,
-  returnAckDate: any,
+  model: string;
+  serialNum: string;
+  assetTag: string;
+  accessories: any;
+  formatedAcc: any;
+  otherAccessories: string;
+  msg: any;
+  issReName: string;
+  issIssName: string;
+  issReSig: any;
+  issIssSig: any;
+  issReDate: any;
+  issIssDate: any;
+  returnReName: any;
+  returnAckName: any;
+  returnReSig: any;
+  returnAckSig: any;
+  returnReDate: any;
+  returnAckDate: any;
 }
 
 export const initialSate = {
@@ -67,4 +67,4 @@ export const initialSate = {
   returnAckSig: '',
   returnReDate: '',
   returnAckDate: ''
-}
+};
