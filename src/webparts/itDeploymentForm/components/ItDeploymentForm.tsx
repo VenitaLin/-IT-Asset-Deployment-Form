@@ -655,7 +655,6 @@ export default class ItDeploymentForm extends React.Component<
       },
       function () {
         let _spForm = App.setFormProps(this.state);
-        console.log(_spForm);
         Utils.postData(
           this.props.spHttpClient,
           uri,
