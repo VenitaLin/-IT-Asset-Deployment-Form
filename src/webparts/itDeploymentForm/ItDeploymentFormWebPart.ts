@@ -6,9 +6,9 @@ import ItDeploymentForm from "./components/ItDeploymentForm";
 import { IItDeploymentFormProps } from "./components/IItDeploymentFormProps";
 import {
   IPropertyPaneConfiguration,
-  PropertyPaneTextField
-} from '@microsoft/sp-property-pane';
-import * as strings from 'ItDeploymentFormWebPartStrings';
+  PropertyPaneTextField,
+} from "@microsoft/sp-property-pane";
+import * as strings from "ItDeploymentFormWebPartStrings";
 
 export interface IItDeploymentFormWebPartProps {
   description: string;
@@ -41,20 +41,20 @@ export default class ItDeploymentFormWebPart extends BaseClientSideWebPart<IItDe
       pages: [
         {
           header: {
-            description: strings.PropertyPaneDescription
+            description: strings.PropertyPaneDescription,
           },
           groups: [
             {
               groupName: strings.BasicGroupName,
               groupFields: [
-                PropertyPaneTextField('description', {
-                  label: strings.DescriptionFieldLabel
-                })
-              ]
-            }
-          ]
-        }
-      ]
+                PropertyPaneTextField("description", {
+                  label: strings.DescriptionFieldLabel,
+                }),
+              ],
+            },
+          ],
+        },
+      ],
     };
   }
 }
